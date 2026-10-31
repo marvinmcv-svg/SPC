@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/*
+ * SPC design tokens.
+ * Brand green is a placeholder until the hex is confirmed from SPC brand files (⚠️ VERIFY).
+ */
+@theme {
+  --color-navy-950: #06121f;
+  --color-navy-900: #0b1f33;
+  --color-navy-800: #12304d;
+  --color-navy-700: #1b4166;
+  --color-navy-600: #275682;
+
+  --color-spc-green-700: #1f6b42;
+  --color-spc-green-600: #257a4c;
+  --color-spc-green-500: #2e8b57;
+  --color-spc-green-300: #7cc79e;
+  --color-spc-green-100: #e3f3ea;
+
+  --color-amber-cta: #f5a400;
+  --color-amber-cta-hover: #ffb92e;
+
+  --color-steel-900: #1d2329;
+  --color-steel-700: #3d4852;
+  --color-steel-500: #6b7783;
+  --color-steel-300: #b4bcc4;
+  --color-steel-200: #d5dade;
+  --color-steel-100: #e9ecef;
+  --color-off-white: #f6f7f8;
+
+  --font-display: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-off-white text-steel-900 font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-amber-cta);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-spc-green-600;
+  }
+  .dark-section .eyebrow {
+    @apply text-spc-green-300;
+  }
+  .prose-spc p {
+    @apply mb-4 leading-relaxed text-steel-700;
+  }
+  .prose-spc h2 {
+    @apply mt-10 mb-3 text-2xl font-semibold text-navy-900;
+  }
+  .prose-spc h3 {
+    @apply mt-6 mb-2 text-lg font-semibold text-navy-900;
+  }
+  .prose-spc ul {
+    @apply mb-4 list-disc space-y-1 pl-5 text-steel-700;
+  }
+  .field-label {
+    @apply mb-1 block text-sm font-medium text-navy-900;
+  }
+  .field-input {
+    @apply w-full rounded-md border border-steel-300 bg-white px-3 py-2 text-sm text-steel-900 shadow-sm focus:border-navy-600 focus:outline-none focus:ring-2 focus:ring-navy-600/30;
+  }
+}
+
+/* Animated coating layers used in the hero and cross-section motif */
+@keyframes layer-build {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.layer-build {
+  transform-origin: bottom;
+  animation: layer-build 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
